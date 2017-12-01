@@ -9,7 +9,11 @@ class TestSong < MiniTest::Test
   end
 
   def test_song_name
-    assert_equal("Grease Lightening", @song_1.name)
+    assert_equal("Grease Lightening", @song_1.name())
+  end
+
+  def test_song_can_play
+    assert_equal("Now playing Grease Lightening", @song_1.play())
   end
 
 end
