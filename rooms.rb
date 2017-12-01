@@ -20,4 +20,8 @@ class Room
     @guests.length()
   end
 
+  def check_in(guest)
+    @guests << guest
+  end
+
 end
