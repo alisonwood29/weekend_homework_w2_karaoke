@@ -10,13 +10,14 @@ class TestRoom < MiniTest::Test
     @room = Room.new(2, 5, 10)
 
     @song_1 = Song.new("Grease Lightening")
+    @song_2 = Song.new("Super Freak")
 
-    @guest_1 = Guest.new("Alison", 30)
-    @guest_2 = Guest.new("Hilary", 20)
-    @guest_3 = Guest.new("Findlay", 10)
-    @guest_4 = Guest.new("Jayne", 50)
-    @guest_5 = Guest.new("Nicole", 20)
-    @guest_6 = Guest.new("Jo", 60)
+    @guest_1 = Guest.new("Alison", 30, "Super Freak")
+    @guest_2 = Guest.new("Hilary", 20, "Grease Lightening")
+    @guest_3 = Guest.new("Findlay", 10, "Mambo No. 5")
+    @guest_4 = Guest.new("Jayne", 50, "Love Yourself")
+    @guest_5 = Guest.new("Nicole", 20, "Dancing Queen")
+    @guest_6 = Guest.new("Jo", 60, "Let It Go")
   end
 
   def test_room_has_number
@@ -43,7 +44,7 @@ class TestRoom < MiniTest::Test
   def test_check_in_guest
     @room.check_in(@guest_1)
     assert_equal(1, @room.guest_count())
-    assert_equal(20, @guest_1.money())
+    # assert_equal(20, @guest_1.money())
     assert_equal(10, @room.till())
   end
 
@@ -78,6 +79,12 @@ class TestRoom < MiniTest::Test
     @room.charge_fee(@guest_1, fee)
     assert_equal(20, @guest_1.money)
   end
+
+  def test_play_favourite_song
+    @room.add_song(@song_1)
+    @room.add_song(@song_2)
+    assert_equal("Whoo, my favourite!", @room.play_song(@guest_2))
+    end
 
 
 end

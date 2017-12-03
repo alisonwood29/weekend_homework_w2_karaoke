@@ -40,8 +40,15 @@ class Room
   def check_in(guest)
     # binding.pry
     @guests << guest
-    # room.charge_fee(guest, entry_fee)
+    # room.charge_fee(guest, @entry_fee)
     @till += @entry_fee
+  end
+
+  def play_song(guest)
+    # binding.pry
+    songs_playlist = @songs.map {|song| song.name}
+    return "Whoo, my favourite!" if songs_playlist.include?(guest.favourite_song())
+
   end
 
 
