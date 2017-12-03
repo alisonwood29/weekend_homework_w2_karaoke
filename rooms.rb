@@ -2,7 +2,7 @@ require("pry")
 
 class Room
 
-  attr_reader :number, :capacity, :entry_fee
+  attr_reader :number, :capacity, :entry_fee, :till
 
   def initialize(number, capacity, entry_fee)
     @number = number
@@ -10,6 +10,7 @@ class Room
     @guests = []
     @capacity = capacity
     @entry_fee = entry_fee
+    @till = 0
   end
 
   def song_count
@@ -24,10 +25,6 @@ class Room
     @guests.length()
   end
 
-  def check_in(guest)
-    @guests << guest
-  end
-
   def check_out(guest)
     @guests.delete(guest)
   end
@@ -39,5 +36,13 @@ class Room
   def charge_fee(guest, amount)
     guest.pay_money(amount)
   end
+
+  def check_in(guest)
+    # binding.pry
+    @guests << guest
+    # room.charge_fee(guest, entry_fee)
+    @till += @entry_fee
+  end
+
 
 end
