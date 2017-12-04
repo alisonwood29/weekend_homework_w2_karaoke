@@ -44,7 +44,7 @@ class TestRoom < MiniTest::Test
   def test_check_in_guest
     @room.check_in(@guest_1)
     assert_equal(1, @room.guest_count())
-    # assert_equal(20, @guest_1.money())
+    assert_equal(20, @guest_1.money())
     assert_equal(10, @room.till())
   end
 
@@ -80,11 +80,15 @@ class TestRoom < MiniTest::Test
     assert_equal(20, @guest_1.money)
   end
 
-  def test_play_favourite_song
+  def test_play_favourite_song__song_found
     @room.add_song(@song_1)
     @room.add_song(@song_2)
     assert_equal("Whoo, my favourite!", @room.play_song(@guest_2))
-    end
+  end
+
+  def test_play_favourite_song__song_not_found
+    assert_equal("Song not found", @room.play_song(@guest_3))
+  end
 
 
 end
